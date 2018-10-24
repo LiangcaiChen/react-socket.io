@@ -1,9 +1,11 @@
-const io = require('socket.io');
+const io = require('socket.io')();
 
 io.on('connection', (socket) => {
-    socket.on('messages', data => {
+    console.log("made socket connection");
+
+    socket.on('messages', (data) => {
         console.log('Receiving data...');
-        socket.emit('messages', data);
+        socket.broadcast.emit('messages', data);
     });
 });
 
